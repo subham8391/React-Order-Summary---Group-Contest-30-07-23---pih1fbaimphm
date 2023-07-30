@@ -10,10 +10,11 @@ const options = [
 ];
 
 const App = () => {
-  const [currentPlan, setCurrentPlan] = useState();
+  const [currentPlan, setCurrentPlan] = useState(options[0]); // Default to the first plan
 
   const changeHandler = (e) => {
-
+    const selectedPlan = options[e.target.value];
+    setCurrentPlan(selectedPlan);
   };
 
   return (
@@ -48,8 +49,9 @@ const App = () => {
               </svg>
             </div>
             <div className="plan">
-              <h4 id="plan-title"></h4>
-              <p id="plan-price"></p>
+              {/* Display the selected plan's name and price */}
+              <h4 id="plan-title">{currentPlan.plan}</h4>
+              <p id="plan-price">{currentPlan.price}</p>
             </div>
             <select onChange={changeHandler} className="select" id="select">
               <option disabled selected>
@@ -57,7 +59,7 @@ const App = () => {
               </option>
               {options.map((option) => (
                 <option key={option.key} value={option.key}>
-                 
+                  {option.plan}
                 </option>
               ))}
             </select>
@@ -75,3 +77,4 @@ const App = () => {
 };
 
 export default App;
+
